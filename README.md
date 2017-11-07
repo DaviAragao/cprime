@@ -1,32 +1,17 @@
-# Primos
-### A busca incansável por novos primos de Mersenne
+# CPrime
+### Cliente em C para máquinas simples trabalharem buscando números primos de mersenne.
 
-Trabalho de conclusão de curso. Davi Augusto Aragão. IFSP.
+#### Dependências:
 
-#### Usando o programa
+* [GMP](https://gmplib.org/) `sudo apt-get install libgmp3-dev`.
+* [libcurl](https://curl.haxx.se/libcurl/) `sudo apt-get install libcurl4-openssl-dev`.
 
-1. Clone o projeto:
+### Parâmetros:
 
-`git clone https://github.com/DaviAragao/primos.git`
+1. Número de threads em que o processamento vai se dividir `-p`:
 
-2. Instale as dependências do projeto:
+`cprime -p2`
 
-  1.  Instale a biblioteca [GMP](https://gmplib.org/):
-  
-    **Linux:** `sudo apt-get install libgmp3-dev`
-    
-    **Windows:** [Link](http://cs.nyu.edu/~exact/core/gmp/index.html)
-    
-  2.  Instale a biblioteca [MPICH2](http://www.mpich.org/):
-  
-    **Linux:** [Link](http://mpitutorial.com/tutorials/installing-mpich2/)
-    
-    **Windows:** [Link](http://swash.sourceforge.net/online_doc/swashimp/node9.html)
-    
-3. Compile o programa:
+2. O nome da interface de rede corrente que vai requisitar os expoentes `--interface`:
 
-`gcc main.c -o main -lgmp`
-
-4. Execute o programa:
-
-`./main`
+`cprime -p2 --interface eth0`
