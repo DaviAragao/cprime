@@ -6,12 +6,18 @@
 * [GMP](https://gmplib.org/) `sudo apt-get install libgmp3-dev`.
 * [libcurl](https://curl.haxx.se/libcurl/) `sudo apt-get install libcurl4-openssl-dev`.
 
-### Parâmetros:
+#### Instalação:
 
-1. Número de threads em que o processamento vai se dividir `-p`:
+`make; sudo make install`
 
-`cprime -p2`
+#### Parâmetros:
+
+1. Número de threads em que o processamento vai se dividir `--processors`:
+
+`cprime --processors 2`
 
 2. O nome da interface de rede corrente que vai requisitar os expoentes `--interface`:
 
-`cprime -p2 --interface eth0`
+`cprime --processors 2 --interface eth0`
+
+Use sempre os dois parâmetros juntos.
