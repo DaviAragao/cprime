@@ -19,6 +19,9 @@ $(ODIR)/%.o: $(SRCDIR)/%.c $(DEPS)
 cprime: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
+install:
+	@mv cprime /usr/bin
+
 .PHONY: clean
 
 clean:
