@@ -14,6 +14,7 @@
 #define NULL ((void *) 0)
 #endif
 
+void printHelp();
 void logMessage(char *message);
 void *calcMersenne(void *interface);
 char *getMacAddres();
@@ -21,38 +22,38 @@ char *getHostName();
 
 int main(int argc, char** argv)
 {
-	int i, processors;
+	int i, threads;
 	char optc = 0;
 	char interface[] = "eth0";
 	pthread_t tid;
 
 	struct option OpcoesLongas[] = {
 		{"interface", required_argument, NULL, 'i'},
-		{"processors", required_argument, NULL, 'p'},
+		{"threads", required_argument, NULL, 't'},
 		{0, 0, 0, 0}
 	};
 
 	if(argc == 1)
 	{
-		printf("Parâmetros faltando%c", 10);
+		printHelp();
 		exit(0);
 	}
 
-	while((optc = getopt_long(argc, argv, "ip::", OpcoesLongas, NULL)) != -1) {
+	while((optc = getopt_long(argc, argv, "it::", OpcoesLongas, NULL)) != -1) {
 		switch(optc) {
 			case 'i':
 				strcpy(interface, optarg);
 				break;
-			case 'p':
-				processors = atoi(optarg);
+			case 't':
+				threads = atoi(optarg);
 				break;
 			default:
-				printf("Parâmetros incorretos.%c", 10);
+				printHelp();
 				exit(0);
 		}
 	}
 
-	for (i = 0; i < processors; i++) {
+	for (i = 0; i < threads; i++) {
 		sleep(1);
 		pthread_create(&tid, NULL, calcMersenne, (void *) interface);
 	}
@@ -140,4 +141,10 @@ void logMessage(char *message)
 {
 	system("date");
 	printf("%s%c%c", message, 10, 10);
+}
+
+void printHelp()
+{
+	system("clear");
+	printf("CPrime\nCliente em C para máquinas simples trabalharem buscando números primos de mersenne.\n\nParâmetros:\nDefinindo a quantidade de threads da máquina que serão usadas:\n--threads <number>\n\nNome da interface de rede usada:\n--interface <interface>\n\nExemplo de uso:\ncprime --threads 2 --interface eth0\n");
 }

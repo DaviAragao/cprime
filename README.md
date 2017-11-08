@@ -12,12 +12,12 @@
 
 #### Parâmetros:
 
-1. Número de threads em que o processamento vai se dividir `--processors`:
+1. Número de threads em que o processamento vai se dividir `--threads`:
 
-`cprime --processors 2`
+`cprime --threads 2`
 
 2. O nome da interface de rede corrente que vai requisitar os expoentes `--interface`:
 
-`cprime --processors 2 --interface eth0`
+`cprime --threads 2 --interface eth0`
 
 Use sempre os dois parâmetros juntos.
