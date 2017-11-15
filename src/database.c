@@ -21,7 +21,7 @@ bool putPrime(int prime, char *macAddres, char* name, bool mersenne)
 const char *makePutJson(char *macAddres, char* name, bool mersenne)
 {
 	static char body[110];
-	sprintf(body, "{\"calc\": 2, \"machine\": {\"clientType\": 1,\"macAddres\": \"%s\",\"name\": \"%s\"},\"mersenne\": %d}", macAddres, name, mersenne);
+	sprintf(body, "{\"calc\": 2, \"machine\": {\"clientType\": 2,\"macAddres\": \"%s\",\"name\": \"%s\"},\"mersenne\": %d}", macAddres, name, mersenne);
 
 	return body;
 }
