@@ -87,8 +87,26 @@ void *calcMersenne(void *interface)
 
 		for (i = 1; i <= expoente - 2; i++)
 		{
-			mpz_powm_ui(aux, s, (long)(2), mersenneNumber); 
-			mpz_sub_ui(s, aux, (long)(2)); 
+			// aux = (s ^ 2) mod mersenneNumber
+			// mpz_powm_ui(aux, s, (long)(2), mersenneNumber); 
+
+			// s = aux - 2
+			// mpz_sub_ui(s, aux, (long)(2)); 
+
+			// aux = s ^ 2
+			mpz_pow_ui(aux, s, (long)(2));
+			// aux = aux - 2
+			mpz_sub_ui(aux, aux, (long) 2);
+
+			// Don't calc mod if not needed
+			// if (aux > mersenneNumber)
+			if (mpz_cmp(aux, mersenneNumber) >= 0) {
+				// s = aux mod mesenneNumber
+				mpz_mod(s, aux, mersenneNumber);
+			} else {
+				// s = aux
+				mpz_set(s, aux);
+			}
 		}
 
 		logMessage("Está calculado, vou salvar os resultados.");
